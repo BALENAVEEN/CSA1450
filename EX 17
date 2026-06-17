@@ -1,0 +1,32 @@
+#include <stdio.h>
+
+int main()
+{
+    char leadingE[2][5] = {"(", "id"};
+    char leadingT[2][5] = {"(", "id"};
+    char leadingF[2][5] = {"(", "id"};
+
+    int i;
+
+    printf("Grammar:\n");
+    printf("E -> E+T | T\n");
+    printf("T -> T*F | F\n");
+    printf("F -> (E) | id\n");
+
+    printf("\nLEADING(E) = { ");
+    for(i = 0; i < 2; i++)
+        printf("%s ", leadingE[i]);
+    printf("}\n");
+
+    printf("LEADING(T) = { ");
+    for(i = 0; i < 2; i++)
+        printf("%s ", leadingT[i]);
+    printf("}\n");
+
+    printf("LEADING(F) = { ");
+    for(i = 0; i < 2; i++)
+        printf("%s ", leadingF[i]);
+    printf("}\n");
+
+    return 0;
+}
