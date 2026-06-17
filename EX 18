@@ -1,0 +1,32 @@
+#include <stdio.h>
+
+int main()
+{
+    char trailingE[2][5] = {")", "id"};
+    char trailingT[2][5] = {")", "id"};
+    char trailingF[2][5] = {")", "id"};
+
+    int i;
+
+    printf("Grammar:\n");
+    printf("E -> E+T | T\n");
+    printf("T -> T*F | F\n");
+    printf("F -> (E) | id\n");
+
+    printf("\nTRAILING(E) = { ");
+    for(i = 0; i < 2; i++)
+        printf("%s ", trailingE[i]);
+    printf("}\n");
+
+    printf("TRAILING(T) = { ");
+    for(i = 0; i < 2; i++)
+        printf("%s ", trailingT[i]);
+    printf("}\n");
+
+    printf("TRAILING(F) = { ");
+    for(i = 0; i < 2; i++)
+        printf("%s ", trailingF[i]);
+    printf("}\n");
+
+    return 0;
+}
