@@ -1,0 +1,35 @@
+%{
+#include<stdio.h>
+
+int chars = 0, words = 0, lines = 0;
+%}
+
+%%
+
+\n              { lines++; }
+[ \t]+          ;          /* Ignore spaces and tabs */
+"//".*          ;          /* Ignore single-line comments */
+"/*"([^*]|\*+[^*/])*\*+"/" ; /* Ignore multi-line comments */
+
+[a-zA-Z0-9_]+   { words++; chars += yyleng; }
+
+.               { chars++; }
+
+%%
+
+int yywrap()
+{
+    return 1;
+}
+
+int main()
+{
+    yyin = fopen("sample.c","r");
+    yylex();
+
+    printf("Characters = %d\n", chars);
+    printf("Words = %d\n", words);
+    printf("Lines = %d\n", lines);
+
+    return 0;
+}
