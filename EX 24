@@ -1,0 +1,34 @@
+%{
+#include<stdio.h>
+
+int count = 0;
+FILE *fp;
+%}
+
+%%
+
+"//".*                     { count++; }
+
+"/*"([^*]|\n|\*+[^*/])*\*+"/"  { count++; }
+
+.|\n                       { fputs(yytext, fp); }
+
+%%
+
+int yywrap()
+{
+    return 1;
+}
+
+int main()
+{
+    yyin = fopen("input.c","r");
+    fp = fopen("output.c","w");
+
+    yylex();
+
+    printf("Number of comments = %d\n", count);
+
+    fclose(fp);
+    return 0;
+}
