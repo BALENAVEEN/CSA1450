@@ -1,0 +1,27 @@
+%{
+#include<stdio.h>
+int line = 1;
+%}
+
+%%
+
+^      { printf("%d\t", line); }
+
+\n     { line++; printf("\n%d\t", line); }
+
+.      { printf("%s", yytext); }
+
+%%
+
+int yywrap()
+{
+    return 1;
+}
+
+int main()
+{
+    yyin = fopen("sample.c","r");
+    printf("%d\t", line);
+    yylex();
+    return 0;
+}
