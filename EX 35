@@ -1,0 +1,25 @@
+%{
+#include<stdio.h>
+%}
+
+%%
+
+[0-9]      { printf("It is a Digit\n"); }
+
+[a-zA-Z]+  { printf("It is Not a Digit\n"); }
+
+.          { printf("Invalid Input\n"); }
+
+%%
+
+int yywrap()
+{
+    return 1;
+}
+
+int main()
+{
+    printf("Enter a character: ");
+    yylex();
+    return 0;
+}
