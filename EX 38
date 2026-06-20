@@ -1,0 +1,33 @@
+%{
+#include<stdio.h>
+
+int max = 0;
+%}
+
+%%
+
+[a-zA-Z]+ {
+    if(yyleng > max)
+        max = yyleng;
+}
+
+[ \t\n] ;
+
+. ;
+
+%%
+
+int yywrap()
+{
+    return 1;
+}
+
+int main()
+{
+    printf("Enter a sentence:\n");
+    yylex();
+
+    printf("Length of longest word = %d\n", max);
+
+    return 0;
+}
